@@ -75,6 +75,9 @@ await runBars({
       return [];
     }
 
+    // Flat from here on. Never submit a zero-size order if the account is empty.
+    if (!state.cash) return [];
+
     // Flat: enter when the trend is up. On the first eligible bar, a plain
     // uptrend is enough; after that, demand the fast EMA to clear the slow
     // one by the full band, so re-entries need a real move, not a wiggle.
